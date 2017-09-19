@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Restaurant</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800,900|Satisfy" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="grey-text text-darken-3 grey lighten-4">
+
+	<!-- NAVBAR -->
+	<nav id="navbar" class="nav-extended black">
+		<div class="nav-wrapper center-align">
+			<a href="index.html" class="white-text" id="logo"><h1>Le Restaurant Fancy</h1></a>
+		</div>
+		<div class="nav-content">
+			<ul id="tabs" class="tabs tabs-transparent">
+				<li class="tab"><a class="active" href="#tab1">Reservations</a></li>
+				<li class="tab"><a href="#tab2">Wait List</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- MAIN SECTOIN -->
+	<main class="row">
+
+		<!-- TAB1: Reservations -->
+		<div id="tab1">
+			<h5 id="tab1-heading" class="grey-text no-card show center-align">No Reservations Yet</h5>
+
+			<div id="reservation-cards"></div>
+
+			<!--RESERVATION CARD-->
+			<div id="fullCard" class="col s12 m6">
+				<div id="reservation" class="card hoverable hide">
+					<div class="card-image">
+						<div id="map" class="col s12"></div>
+					</div>
+					<div class="card-content">
+						<span id="number" class="card-title activator black-text"><i class="material-icons right">more_vert</i></span>
+						<p id="Reservations"></p>
+					</div>
+					<div class="card sticky-action">
+						<div class="card-action right-align">
+							<button id="next-stage-btn" class="card-button black btn-flat white-text waves-effect waves-light" type="button" name="button">Done</button>
+						</div>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title black-text">Comment<i class="material-icons right">close</i></span>
+						<p id="comment"></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- TAB2: Wait List -->
+		<div id="tab2">
+			<h5 id="tab2-heading" class="grey-text no-card center-align">Wait List Empty</h5>
+		</div>
+
+		<!-- FLOATING ACTION BUTTON -->
+		<div id="reservation-button" class="fixed-action-btn hover-to-toggle">
+			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large grey darken-1 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Make New Reservation" href="#reservation-modal"><i class="material-icons">add</i></a>
+		</div>
+
+	</main>
+
+	<div id="modals">
+
+		<!--  RESERVATION MODAL -->
+		<div id="reservation-modal" class="modal modal-fixed-footer bottom-sheet">
+			<div class="modal-content">
+				<h5 class="center-align">Make New Reservation</h5>
+
+				<!-- FORM -->
+				<div class="row">
+					<div class="col s12">
+						<form id="reservation-form">
+
+							<!-- Input Row 1 -->
+							<div class="row">
+								<!-- Name Input-->
+								<div class="input-field col s12 m12">
+									<input id="name-input" name="name" type="text" class="validate" maxlength="30">
+									<label for="name">Name</label>
+								</div>
+								<!-- Phone Number Input-->
+								<div class="input-field col s12 m6">
+									<input id="phoneNumber-input" name="phone" type="tel" class="validate">
+									<label for="callBackNumber">Phone Number</label>
+								</div>
+								<!-- Time Input-->
+								<div class="input-field col s12 m6">
+									<input id="time-input" name="time" type="text" class="validate">
+									<label for="email">Time</label>
+								</div>
+
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<a href="#!" class="modal-action waves-effect waves-black btn-flat modal-close">Cancel</a>
+				<button id="submit" class="btn black white-text waves-effect waves-light" type="submit" name="action">Submit</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- FOOTER -->
+	<footer class="page-footer black lighten-2 grey-text text-lighten-3">
+		<div class="container">
+			<div class="col sm12 center-align">
+				© 2017 Le Restaurant Fancy
+			</div>
+			<br>
+		</div>
+	</footer>
+
+	<!-- JAVASCRIPT -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0&callback=initMap"></script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
