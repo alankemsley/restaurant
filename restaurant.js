@@ -1,37 +1,72 @@
-// Dependencies http and Express
-var http = require("http");
+// Dependencies
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
 
-var app = require("express");
-// port
-var PORT = 7000;
-// handle request 
-function handleRequest(request, response) {
-    response.end("Fun over!");
-}
+// Sets up express
+var app = express();
+var PORT = process.env.PORT || 3000;
 
-// create our server 
-var server = http.createServer(handleRequest);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json"}));
 
-
-// creating a listener 
-server.listen(PORT, function() {
-    console.log("Server is listening on PORT: ", PORT);
-});
-
-var reservation = [{
-    "customerName" : "Georgie",
-    "phoneNumber" : "(413)123-4321",
-    "customerEmail" : "gnenov89@space.com",
-    "customerID" : "ppl"
-
+var reservations = [{
+  name: "",
+  phoneNumber: "",
+  uniqueId: "",
 }];
 
-var waitlist = [{
-    "cusomerName" : "Barbara Straysland",
-    "phoneNumber" : "123-123-1221",
-    "cusomerEmail": "123@hotmail.com",
-    
-    
-}]
+var waitinglist = [{
+  name: "",
+  phoneNumber: "",
+  uniqueId: "",
+}];
 
+//Routes
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "home.html"));
+});
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "reserve.html"));
+});
+app.get("/tables", function(req, res) {
+  res.json(reservations);
+});
 
+// Search existing reservations
+app.get("/api/:reservations?", function(req, res) {
+  var chosen = req.params.reservations;
+  if (chosen) {
+  	console.log(chosen);
+  	for (var i = 0; i < reservations.length; i++) {
+  	  if (chosen === reservations[i].routeName) {
+  	  	return res.json(reservations[i]);
+  	  }
+  	}
+  	return res.json(false);
+  }
+  return res.json(reservations);
+});
+
+// Create new reservation
+app.post("/api/new", function(req, res) {
+  var newreservation = req.body;
+  newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+  console.log(newreservation);
+  reservations.push(newreservation);
+  res.json(newreservation);
+});
+
+// Clears all reservations
+app.post("/api/new", function(req, res) {
+  console.log(reservations);
+  res.json
+});
+
+// Starts the server to begin listening
+// =============================================================
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
