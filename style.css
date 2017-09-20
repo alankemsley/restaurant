@@ -8,8 +8,6 @@ html {
 /*NAVBAR*/
 
 #logo {
-  /* height: 50px;
-  padding: 10px 20px; */
   font-family: "Satisfy";
 }
 
@@ -76,7 +74,7 @@ main {
 /*MODALS*/
 
 #modals {
-  color: #4e342e;
+  color: #333;
 }
 
 #submit {
