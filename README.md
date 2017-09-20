@@ -6,4 +6,4 @@
 
 # The restaurant accommodates only five people.
 
-# As it only sits 5, those requesting after the intial five reservations get fowarded to a waiting list. 
+# As it only sits five, those requesting after the intial five reservations get fowarded to a waiting list. 
