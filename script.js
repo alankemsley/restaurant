@@ -10,6 +10,7 @@ $(document).ready(function() {
 
   //Submit
   $("#submit").on("click", function(event) {
+    //Frontend
     event.preventDefault();
     $('#reservation-modal').modal('close');
     Materialize.toast("Your reservation has been made.", 2000);
